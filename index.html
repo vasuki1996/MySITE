@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta property="og:image" content="https://www.talater.com/annyang/images/icon_speech.png"/>
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/modal.css">
 </head>
 <body>
 
@@ -269,10 +269,25 @@
     <li>Hire us</li>
   </ul>
 </div>
-
+<div class="modal" id="modal-one" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h2><font color="#000">XTRON Assistant</font></h2>
+      <a href="#close" class="btn-close" aria-hidden="true">×</a> <!--CHANGED TO "#close"-->
+    </div>
+    <div class="modal-body">
+      <iframe src="speech-input/index.html" frameborder="0"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="#close" class="btn">Nice!</a>  <!--CHANGED TO "#close"-->
+    </div>
+    </div>
+  </div>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 <script src="assets/js/functions-min.js"></script>
+<script src="assets/js/xtron.js"></script>
 <script>
 $(window).load(function () {
             var msg = new SpeechSynthesisUtterance();
@@ -285,7 +300,31 @@ $(window).load(function () {
             };
 		console.log(speechSynthesis);
             speechSynthesis.speak(msg);
+	    window.location.href = '#modal-one';
         });
+</script>
+<script>
+// Find all iframes
+var $iframes = $( "iframe" );
+ 
+// Find &#x26; save the aspect ratio for all iframes
+$iframes.each(function () {
+  $( this ).data( "ratio", this.height / this.width )
+    // Remove the hardcoded width &#x26; height attributes
+    .removeAttr( "width" )
+    .removeAttr( "height" );
+});
+ 
+// Resize the iframes when the window is resized
+$( window ).resize( function () {
+  $iframes.each( function() {
+    // Get the parent container&#x27;s width
+    var width = $( this ).parent().width();
+    $( this ).width( width )
+      .height( width * $( this ).data( "ratio" ) );
+  });
+// Resize to fix all iframes on page load.
+}).resize();
 </script>
 </body>
 </html>
