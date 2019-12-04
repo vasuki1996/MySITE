@@ -293,7 +293,7 @@ $(window).load(function () {
             var msg = new SpeechSynthesisUtterance();
             msg.lang = 'en-US';
             msg.rate = 10 / 10;
-            msg.pitch = 1;
+            msg.pitch = -2.80;
             msg.text = 'Welcome to Xtron Design Lab. Hey i\'m extron, currently i\'m getting ready and once i get ready we can talk. Till then please wait for me';
             msg.onend = function (e) {
                 console.log('Finished in ' + event.elapsedTime + ' seconds.');
